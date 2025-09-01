@@ -1,10 +1,10 @@
 [package]
-name = "pepegsitter"
-description = "Collection of Tree-Sitter parsers"
-repository = "https://github.com/Dav1dde/PepegSitter"
-version = "0.2.2"
-authors = ["David Herberth <github@dav1d.de>"]
-edition = "2021"
+name = "rs-tree-sitter-languages"
+description = "Rust bindings for a collection of Tree-Sitter language parsers"
+repository = "https://github.com/DakineMI/rs-tree-sitter-languages"
+version = "0.25.8"
+authors = ["Jonathan Hughes <jonathan.m.hughes.1@gmail.com>"]
+edition = "2024"
 license = "MIT"
 build = "build.rs"
 
@@ -20,65 +20,150 @@ include = [
     "sitters/tree-sitter-*/**/node-types.json",
 ]
 
+[dependencies]
+tree-sitter = { workspace = true }
+tree-sitter-highlight = { workspace = true, optional = true }
+
+[build-dependencies]
+cc = { workspace = true }
+tree-sitter = { workspace = true }
+tree-sitter-highlight = { workspace = true }
+
 [features]
 default = [
+    "c-sharp",
+    "cpp",
+    "go",
+    "java",
+    "javascript",
+    "python",
+    "rust",
+    "typescript",
+    "ts-highlight"
+]
+
+all = [
     "bash",
     "c",
+    "c-sharp",
+    "cmake",
     "cpp",
+    "crystal",
     "css",
+    "csv",
     "d",
+    "dart",
+    "dockerfile",
+    "editorconfig",
+    "elixir",
+    "erlang",
     "go",
     "haskell",
+    "hcl",
     "html",
+    "ini",
     "java",
     "javascript",
     "json",
+    "julia",
+    "kotlin",
     "lua",
     "markdown",
+    "nim",
+    "perl",
+    "php",
+    "powershell",
     "python",
+    "r",
+    "requirements",
+    "ruby",
     "rust",
+    "scala",
+    "sql",
+    "svelte",
+    "swift",
     "toml",
-    "typescript-tsx",
-    "typescript-typescript",
-    "yaml",
+    "typescript",
     "vim",
-    "ts-highlight"
+    "vue",
+    "xml",
+    "yaml"
 ]
+
+# Feature groups
+web = ["javascript", "typescript", "html", "css", "svelte", "vue"]
+data = ["python", "r", "julia", "sql"]
+scripts = ["bash", "powershell", "lua", "python"]
+jvm = ["java", "kotlin", "scala"]
+systems = ["c", "cpp", "c-sharp", "rust", "go", "swift", "d"]
+functional = ["haskell", "erlang", "elixir", "scala"]
+config = ["yaml", "toml", "ini", "json", "editorconfig"]
+markup = ["html", "css", "xml", "yaml", "json", "markdown"]
+popular = ["javascript", "typescript", "python", "java", "c", "cpp", "rust", "go"]
+backend = ["javascript", "typescript", "python", "java", "c", "cpp", "rust", "go", "kotlin", "php", "ruby", "c-sharp", "scala"]
+frontend = ["javascript", "typescript", "html", "css", "svelte", "vue", "kotlin"]
+
 bash = []
 c = []
-cpp = []
-css = []
-d = []
-go = []
-haskell = []
-html = []
-java = []
-javascript = []
-json = []
-lua = []
-markdown = []
-python = []
-rust = []
-toml = []
-typescript-tsx = []
-typescript-typescript = []
-vim = []
-yaml = []
+c-sharp	=	[]
+cmake	=	[]
+cpp	=	[]
+crystal	=	[]
+css	=	[]
+csv	=	[]
+d	=	[]
+dart	=	[]
+dockerfile	=	[]
+editorconfig	=	[]
+elixir	=	[]
+erlang	=	[]
+go	=	[]
+haskell	=	[]
+hcl	=	[]
+html	=	[]
+ini	=	[]
+java	=	[]
+javascript	=	[]
+json	=	[]
+julia	=	[]
+kotlin	=	[]
+lua	=	[]
+markdown	=	[]
+nim	=	[]
+perl	=	[]
+php	=	[]
+powershell	=	[]
+python	=	[]
+r	=	[]
+requirements	=	[]
+ruby	=	[]
+rust	=	[]
+scala	=	[]
+sql	=	[]
+svelte	=	[]
+swift	=	[]
+toml	=	[]
+typescript	=	[]
+vim	=	[]
+vue	=	[]
+xml	=	[]
+tsx	=	[]
+typescript-tsx	=	["typescript"]
+typescript-typescript	=	["typescript"]
+yaml	=	[]
+ts-highlight	=	["tree-sitter-highlight"]
 
-ts-highlight = ["tree-sitter-highlight"]
+[workspace.dependencies]
+tree-sitter = ">= 0.25.8"
+tree-sitter-highlight = ">= 0.25.8"
+cc = ">= 1.2.35" 
 
-[dependencies]
-tree-sitter = ">= 0.19, < 0.21"
-tree-sitter-highlight = { version = ">= 0.19, < 0.21", optional = true }
-
-[build-dependencies]
-cc = "1"
-
-[dev-dependencies]
-html-escape = "0.2"
-lazy_static = "1"
 
 # docs.rs-specific configuration
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
+
+[dev-dependencies]
+html-escape = "0.2.13"
+lazy_static = "1.5.0"

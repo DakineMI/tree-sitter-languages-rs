@@ -55,7 +55,7 @@ impl Sitter {
 
     fn version(&self) -> &str {
         self.version.get_or_init(|| {
-            let version_file = self.path.join("pepegsitter-version");
+            let version_file = self.path.join("rs-tree-sitter-languages-version");
             if let Ok(version) = std::fs::read_to_string(version_file) {
                 return version.trim().to_owned();
             }
