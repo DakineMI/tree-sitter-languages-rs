@@ -143,13 +143,13 @@ sql	=	[]
 svelte	=	[]
 swift	=	[]
 toml	=	[]
-typescript	=	[]
+typescript	=	["typescript-typescript", "typescript-tsx"]
 vim	=	[]
 vue	=	[]
 xml	=	[]
 tsx	=	[]
-typescript-tsx	=	["typescript"]
-typescript-typescript	=	["typescript"]
+typescript-tsx	=	[]
+typescript-typescript	=	[]
 yaml	=	[]
 ts-highlight	=	["tree-sitter-highlight"]
 
@@ -167,3 +167,6 @@ rustdoc-args = ["--cfg", "docsrs"]
 [dev-dependencies]
 html-escape = "0.2.13"
 lazy_static = "1.5.0"
+[[example]]
+name = "highlighter"
+required-features = ["all"]

@@ -55,27 +55,27 @@ lazy_static! {
     ]);
     static ref CONFIGS: HashMap<&'static str, HighlightConfiguration> = HashMap::from(
         [
-            ("vim", pepegsitter::vim::highlight()),
-            ("rust", pepegsitter::rust::highlight()),
-            ("toml", pepegsitter::toml::highlight()),
-            ("javascript", pepegsitter::javascript::highlight()),
-            ("typescript", pepegsitter::typescript::highlight()),
-            ("html", pepegsitter::html::highlight()),
-            ("css", pepegsitter::css::highlight()),
-            ("c", pepegsitter::c::highlight()),
-            ("cpp", pepegsitter::cpp::highlight()),
-            ("shells", pepegsitter::bash::highlight()),
-            ("shells", pepegsitter::bash::highlight()),
-            ("lua", pepegsitter::lua::highlight()),
-            ("python", pepegsitter::python::highlight()),
-            ("yaml", pepegsitter::yaml::highlight()),
-            ("go", pepegsitter::go::highlight()),
-            ("haskell", pepegsitter::haskell::highlight()),
-            ("d", pepegsitter::d::highlight()),
-            ("java", pepegsitter::java::highlight()),
-            ("markdown", pepegsitter::markdown::highlight()),
+            ("vim", rs_tree_sitter_languages::vim::highlight()),
+            ("rust", rs_tree_sitter_languages::rust::highlight()),
+            ("toml", rs_tree_sitter_languages::toml::highlight()),
+            ("javascript", rs_tree_sitter_languages::javascript::highlight()),
+            ("typescript", rs_tree_sitter_languages::typescript::highlight()),
+            ("html", rs_tree_sitter_languages::html::highlight()),
+            ("css", rs_tree_sitter_languages::css::highlight()),
+            ("c", rs_tree_sitter_languages::c::highlight()),
+            ("cpp", rs_tree_sitter_languages::cpp::highlight()),
+            ("shells", rs_tree_sitter_languages::bash::highlight()),
+            ("shells", rs_tree_sitter_languages::bash::highlight()),
+            ("lua", rs_tree_sitter_languages::lua::highlight()),
+            ("python", rs_tree_sitter_languages::python::highlight()),
+            ("yaml", rs_tree_sitter_languages::yaml::highlight()),
+            ("go", rs_tree_sitter_languages::go::highlight()),
+            ("haskell", rs_tree_sitter_languages::haskell::highlight()),
+            ("d", rs_tree_sitter_languages::d::highlight()),
+            ("java", rs_tree_sitter_languages::java::highlight()),
+            ("markdown", rs_tree_sitter_languages::markdown::highlight()),
         ]
-        .map(|(key, mut val)| {
+        .map(|(key, mut val): (&str, HighlightConfiguration)| {
             val.configure(HIGHLIGHT_NAMES);
             (key, val)
         })

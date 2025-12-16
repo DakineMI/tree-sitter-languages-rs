@@ -14,10 +14,14 @@ for dir in sitters/tree-sitter-*/; do
         parser_name=$(basename "$dir" | sed 's|^tree-sitter-||')
         config_file="${dir}tree-sitter.json"
 
-        # Skip if config already exists
+        # Check if config exists and has metadata
         if [ -f "$config_file" ]; then
-            echo "✓ $parser_name already has tree-sitter.json"
-            continue
+            if grep -q "metadata" "$config_file"; then
+                echo "✓ $parser_name has valid tree-sitter.json"
+                continue
+            else
+                echo "⚠ $parser_name has invalid tree-sitter.json - regenerating..."
+            fi
         fi
 
         echo "Creating tree-sitter.json for $parser_name..."
@@ -25,27 +29,12 @@ for dir in sitters/tree-sitter-*/; do
         # Create basic configuration
         cat > "$config_file" << EOF
 {
-  "name": "tree-sitter-$parser_name",
-  "version": "0.21.0",
-  "description": "$parser_name grammar for tree-sitter",
-  "keywords": [
-    "parser",
-    "lexer"
-  ],
-  "author": {
-    "name": "tree-sitter",
-    "url": "https://github.com/tree-sitter"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tree-sitter/tree-sitter-$parser_name"
-  },
-  "main": "bindings/node",
-  "types": "bindings/node/index.d.ts",
-  "tree-sitter": [
+  "grammars": [
     {
+      "name": "$parser_name",
+      "camelcase": "$parser_name",
       "scope": "source.$parser_name",
+      "path": ".",
       "file-types": [
         "$parser_name"
       ],
@@ -55,13 +44,28 @@ for dir in sitters/tree-sitter-*/; do
       "injection-regex": "^$parser_name$"
     }
   ],
-  "files": [
-    "/bindings/node/",
-    "/src/",
-    "/grammar.js",
-    "/LICENSE",
-    "/README.md"
-  ]
+  "metadata": {
+    "version": "0.21.0",
+    "license": "MIT",
+    "description": "$parser_name grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "tree-sitter",
+        "email": "community@tree-sitter.io"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter/tree-sitter-$parser_name"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
 }
 EOF
 
