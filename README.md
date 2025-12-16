@@ -11,12 +11,12 @@ Enable the parsers you need through cargo features, by default all features are 
 
 ```rust
 // Get the TreeSitter language
-let _ = rs_tree_sitter_languages::bash::language();
+let _ = rs_tree_sitter_languages::rust::language();
 // Get a new `HighlightConfiguration` for the language.
-let _ = rs_tree_sitter_languages::bash::highlight();
+let _ = rs_tree_sitter_languages::rust::highlight();
 
 // Queries are accessible module constants.
-let _ = rs_tree_sitter_languages::bash::HIGHLIGHT_QUERY;
+let _ = rs_tree_sitter_languages::rust::HIGHLIGHT_QUERY;
 ```
 
 ## Parsers

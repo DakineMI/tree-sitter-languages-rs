@@ -174,7 +174,7 @@ fn write_pepegsit(sitter @ Sitter { lang, .. }: &Sitter) -> std::io::Result<()> 
         r#"
         use tree_sitter::Language;
 
-        extern "C" {{
+        unsafe extern "C" {{
             fn tree_sitter_{lang}() -> Language;
         }}
 
@@ -237,6 +237,7 @@ fn write_pepegsit(sitter @ Sitter { lang, .. }: &Sitter) -> std::io::Result<()> 
             .map(|_| "INJECTION_QUERY")
             .unwrap_or("\"\"");
         let locals = sitter.locals().map(|_| "LOCALS_QUERY").unwrap_or("\"\"");
+        let tags = sitter.tags().map(|_| "TAGS_QUERY").unwrap_or("\"\"");
 
         writeln!(
             output,
@@ -252,6 +253,7 @@ fn write_pepegsit(sitter @ Sitter { lang, .. }: &Sitter) -> std::io::Result<()> 
                     {highlight},
                     {injection},
                     {locals},
+                    {tags},
                 ).unwrap()
             }}
         "#
@@ -270,7 +272,7 @@ fn write_pepegsit(sitter @ Sitter { lang, .. }: &Sitter) -> std::io::Result<()> 
         fn test_can_load_grammar() {{
             let mut parser = tree_sitter::Parser::new();
             parser
-                .set_language(super::language())
+                .set_language(&super::language())
                 .expect("Error loading {lang} language");
         }}
     "#

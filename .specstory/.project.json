@@ -2,5 +2,8 @@
   "workspace_id": "12ce-9a15-1d62-7253",
   "workspace_id_at": "2025-09-03T04:07:34.055Z",
   "git_id": "1488-157b-7fd3-1a49",
-  "git_id_at": "2025-09-03T04:07:34.092Z"
+  "git_id_at": "2025-09-03T04:07:34.092Z",
+  "project_name": "rs-tree-sitter-languages",
+  "cloud_sync": true,
+  "user_id": "jonathan.m.hughes.1@gmail.com"
 }
