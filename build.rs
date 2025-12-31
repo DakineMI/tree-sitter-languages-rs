@@ -151,7 +151,7 @@ fn compile_sitter(sitter @ Sitter { lang, .. }: &Sitter) -> bool {
 
         // Static linking does not work on Mac.
         if !cfg!(target_os = "macos") {
-            cc.static_flag(true).cpp_link_stdlib(None);
+            cc.cpp_link_stdlib(None);
             needs_cpp = true;
         }
 
